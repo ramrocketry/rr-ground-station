@@ -1,24 +1,8 @@
 <script setup lang="ts">
 
-import Chart from "chart.js/auto";
-import {ref} from 'vue';
+import Graph from './components/Graph.vue';
 
-const chartref = ref('chart');
-
-const testdata = [
-  {year: 2010, value: 10}
-]
-
-let chart = new Chart(null, {
-  type: 'line',
-  data: {
-    labels: testdata.map(row => row.year),
-    datasets: [
-
-    ]
-  }
-});
-
+import {onMounted} from 'vue'
 </script>
 
 <template>
@@ -35,21 +19,12 @@ let chart = new Chart(null, {
           Port: /dev/ttyACM0
         </span>
       </div>
-    </div>  
+    </div>
     <div class="content-grid">
-      <div class="telem-chart">
-        <h4>Title</h4>
-        <hr>
-        <p>
-          Current value: 0<br>
-          Maximum value: 0<br>
-          Average value: 0<br>
-        </p>
-
-        <canvas ref="chart">
-
-        </canvas>
-      </div>
+      <Graph cid="test"/>
+      <Graph cid="test2"/>
+      <Graph cid="test3"/>
+      <Graph cid="test4"/>
     </div>
   </div>
 </template>
@@ -97,8 +72,9 @@ span.tb-button:hover {
 
 div.content-grid {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: auto auto auto;
   padding: 10px;
+  gap: 5px;
 }
 
 /**Telemetry charts */
@@ -107,5 +83,6 @@ div.telem-chart {
   border: 1px solid var(--color-accent);
   padding: 5px;
   border-radius: 5px;
+  max-width: initial;
 }
 </style>
